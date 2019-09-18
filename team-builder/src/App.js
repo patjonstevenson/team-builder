@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Form from "./components/Form";
+import TeamList from "./components/TeamList";
 
 function App() {
+  const [team, setTeam] = useState([
+    { name: "Patrick", email: "stevenson@patrick.ai", role: "Chief" }
+  ]);
+  const addTeamMember = member => {
+    setTeam([...team, member]);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form addTeamMember={addTeamMember} />
+      <TeamList team={team} />
     </div>
   );
 }
